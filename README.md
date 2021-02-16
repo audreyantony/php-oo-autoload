@@ -39,3 +39,19 @@ Pour avoir un Slug toujours valide
 
        return $text;
     }
+
+## Composer
+
+Installez composer à cette URL:
+
+https://getcomposer.org/
+
+## Twig
+
+Pour installer Twig:
+
+    composer require "twig/twig:^3.0"
+
+### Pour la documentation:
+
+https://twig.symfony.com/doc/3.x/
