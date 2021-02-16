@@ -2,6 +2,9 @@
 PHP en OO avec un autoload manuel et installation de Twig via composer
 
 ## Database
+Importez en MariaDB en désactivant les clefs étrangères
+
+        datas/import.sql
 
 ![strucure de la DB](https://github.com/WebDevCF2m2020/php-oo-autoload/raw/main/datas/phpooautoload.png)
 

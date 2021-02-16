@@ -18,10 +18,9 @@ require_once "../config/config.php";
  */
 spl_autoload_register(
     function($className){
-        include "../model/".$className.".php";
+        require "../model/".$className.".php";
     }
 );
-
 
 
 /*
