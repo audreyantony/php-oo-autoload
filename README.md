@@ -1,6 +1,10 @@
 # php-oo-autoload
 PHP en OO avec un autoload manuel et installation de Twig via composer
 
+## Database
+
+![strucure de la DB](https://github.com/WebDevCF2m2020/php-oo-autoload/raw/main/datas/phpooautoload.png)
+
 ## Création d'un autoload
 Pour charger automatiquement des classes depuis le dossier model
 
