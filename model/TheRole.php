@@ -1,7 +1,11 @@
 <?php
 
 
-class TheRole
+class TheRole extends MappingTableAbstract
 {
 
+    public function __construct(array $tab)
+    {
+        $this->hydrate($tab);
+    }
 }
