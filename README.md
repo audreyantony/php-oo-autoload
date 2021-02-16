@@ -1,2 +1,41 @@
 # php-oo-autoload
 PHP en OO avec un autoload manuel et installation de Twig via composer
+
+## Création d'un autoload
+Pour charger automatiquement des classes depuis le dossier model
+
+    spl_autoload_register(function ($class_name) 
+    {
+        include "../model/"$class_name . '.php';
+    }
+    );
+
+## Création d'un slug multi-langues
+Pour avoir un Slug toujours valide
+
+    public static function slugify($text)
+    {
+       // replace non letter or digits by -
+       $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+       // transliterate
+       $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+       // remove unwanted characters
+       $text = preg_replace('~[^-\w]+~', '', $text);
+
+       // trim
+       $text = trim($text, '-');
+
+       // remove duplicate -
+       $text = preg_replace('~-+~', '-', $text);
+
+       // lowercase
+       $text = strtolower($text);
+
+       if (empty($text)) {
+       return 'n-a';
+       }
+
+       return $text;
+    }
