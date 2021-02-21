@@ -6,6 +6,10 @@ class TheNews extends MappingTableAbstract
 
     protected int $idtheNews;
     protected string $theNewsTitle;
+    protected string $theNewsSlug;
+    protected string $theNewsText;
+    protected string $theNewsDate;
+    protected int $theUserIdtheUser;
 
 
     public function __construct(array $tab)
