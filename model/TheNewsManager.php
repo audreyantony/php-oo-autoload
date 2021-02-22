@@ -18,7 +18,7 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
         // TODO: Implement create() method.
     }
 
-    public function update(object $obj, int $id): bool
+    public function update($obj, int $id): bool
     {
         // TODO: Implement update() method.
     }

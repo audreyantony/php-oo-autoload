@@ -11,10 +11,10 @@ interface ManagerInterface{
     public function getOneById(int $id):array;
 
     # C
-    public function create(object $obj):bool;
+    public function create($obj):bool;
 
     # u
-    public function update(object $obj, int $id):bool;
+    public function update($obj, int $id):bool;
 
     # D
     public function delete(int $id):bool;
