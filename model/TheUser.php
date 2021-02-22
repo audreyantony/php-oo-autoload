@@ -14,6 +14,10 @@ class TheUser extends MappingTableAbstract
         $this->hydrate($tab);
     }
 
+    public function hydrate2(){
+
+    }
+
     # GETTERS
 
     /**
