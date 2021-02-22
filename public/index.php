@@ -22,8 +22,6 @@ spl_autoload_register(
     }
 );
 
-$test = new TheNews(["idtheNews"=>5,"theNewsTitle"=>"Bonjour les amis","Attack"=>"DELETE ..."]);
-var_dump($test);
 
 
 /*
