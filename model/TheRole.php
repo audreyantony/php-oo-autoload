@@ -39,6 +39,8 @@ class TheRole extends MappingTableAbstract
         return $this->theRoleValue;
     }
 
+    # SETTERS
+
     /**
      * @param int $idTheRole
      */
