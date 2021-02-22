@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `therole` (
 --
 
 INSERT INTO `therole` (`idtheRole`, `theRoleName`, `theRoleValue`) VALUES
-(1, 'Administrateur', 0),
+(1, 'Administrateur', 3),
 (2, 'Modérateur', 1),
 (3, 'Rédacteur', 2);
 
