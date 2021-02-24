@@ -24,7 +24,6 @@ spl_autoload_register(
 
 
 
-
 /*
  * Connexion à la DB
  */
@@ -33,3 +32,11 @@ try{
 }catch(PDOException $e){
     die($e->getMessage());
 }
+
+// Managers communs
+$TheSectionManager = new TheSectionManager($myConnect);
+
+
+
+// Contrôleur publique (pour l'affichage du site lorsqu'on est pas connecté)
+require_once "../controller/publicController.php";
