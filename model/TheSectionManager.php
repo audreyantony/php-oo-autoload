@@ -13,6 +13,7 @@ class TheSectionManager extends ManagerAbstract implements ManagerInterface
             return [];
         }
         $array = $recup->fetchAll(PDO::FETCH_ASSOC);
+        // instanciations des résultats en objets de type TheSection
         foreach ($array as $item){
             $sections[]= new TheSection($item);
         }

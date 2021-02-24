@@ -33,7 +33,7 @@ try{
     die($e->getMessage());
 }
 
-// Managers communs
+// Managers communs à tous les publics (ou rôles)
 $TheSectionManager = new TheSectionManager($myConnect);
 
 
