@@ -3,4 +3,4 @@
 // récupération des sections pour le menu
 $sectionsForMenu = $TheSectionManager->getAll();
 
-var_dump($sectionsForMenu);
+// Appel de la vue

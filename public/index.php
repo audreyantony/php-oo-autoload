@@ -22,7 +22,19 @@ spl_autoload_register(
     }
 );
 
+/*
+ * Appel de l'autoload de composer (dossier vendor), ! toutes les classes sont chargées (identifiées par leur namespace), même les non utilisées. L'utilisation des namespaces devient primordiale pour éviter d'avoir des conflits de noms de classes. Toutes les bibliothèques externes de PHP sont généralement chargées via composer
+ */
+require_once '../vendor/autoload.php';
 
+/*
+ * Génération de l'espace de travail pour Twig (après l'autoload de composer)
+ */
+$loader = new \Twig\Loader\FilesystemLoader('../view'); // lieux où se trouveront nos vues
+// création de l'environnement, nous n'activerons le cache que lorsque le travail sera terminé
+$twig = new \Twig\Environment($loader, [
+    // 'cache' => '/path/to/compilation_cache',
+]);
 
 /*
  * Connexion à la DB
