@@ -62,3 +62,10 @@ Pour installer Twig:
 ### Pour la documentation:
 
 https://twig.symfony.com/doc/3.x/
+
+### Vendor
+
+On met le dossier vendor dans le .gitignore, en effet, pour réinstaller les dépendances il suffira, après avoir chargé le projet, de les  installer grâce au composer.json avec la commande :
+
+    composer install
+
