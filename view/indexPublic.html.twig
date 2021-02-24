@@ -2,5 +2,9 @@
 
 {% block title %}Accueil de note site{% endblock %}
 {% block body %}
-{% for  %}
+    {% for item in menu %}
+    <h3>{{ loop.index }}. {{ item.getTheSectionName }}</h3>
+    <p>{{ item.getTheSectionDesc }}</p>
+    {% endfor %}
+    <pre>{{ dump(menu) }}</pre>
 {% endblock %}
