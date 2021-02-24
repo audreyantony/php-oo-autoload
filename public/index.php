@@ -33,8 +33,12 @@ require_once '../vendor/autoload.php';
 $loader = new \Twig\Loader\FilesystemLoader('../view'); // lieux où se trouveront nos vues
 // création de l'environnement, nous n'activerons le cache que lorsque le travail sera terminé
 $twig = new \Twig\Environment($loader, [
+    'debug' => true, // mode dev
     // 'cache' => '/path/to/compilation_cache',
 ]);
+// activation du débogage
+$twig->addExtension(new \Twig\Extension\DebugExtension());
+
 
 /*
  * Connexion à la DB
