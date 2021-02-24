@@ -8,14 +8,5 @@ interface ManagerInterface{
 
     # R
     public function getAll():array;
-    public function getOneById(int $id):array;
 
-    # C
-    public function create($obj):bool;
-
-    # u
-    public function update($obj, int $id):bool;
-
-    # D
-    public function delete(int $id):bool;
 }
