@@ -7,15 +7,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
-
+                {# Tant qu'on a des éléments du menu public #}
+                {% for menuItem in menu %}
                 <li class="nav-item">
-                    <a class="nav-link"
-                       href="#">Menu1</a>
+                    {# On les affiche en utilisant ou les getters ou les paramètres #}
+                    <a class="nav-link" href="?section={{ menuItem.getIdTheSection }}">{{ menuItem.getTheSectionName }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#">Menu2</a>
-                </li>
+                {# Si on a pas d'éléments de menu #}
+                {% else %}
+                    <li class="nav-item"><a class="nav-link">Pas encore de section</a></li>
+                {% endfor %}
                 <li class="nav-item">
                     <a class="nav-link" href="?p=connect">Connexion</a>
                 </li>
