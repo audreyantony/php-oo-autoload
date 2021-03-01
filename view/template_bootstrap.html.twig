@@ -1,1 +1,31 @@
+{# Template étendue depuis base.html.twig ! On ne peut plus rien écrire en dehors des blocks
+Si on ne réécrit pas le nom d'un block existant dans un parent, il existe par défaut dans ses enfants
+#}
 {% extends "base.html.twig" %}
+
+
+{# Appel des feuilles de style et inconne #}
+{% block stylesheets %}
+<link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/custom.min.css" media="screen">
+    <link rel="shortcut icon" href="img/favicon.ico">
+{% endblock %}
+
+{# si on crée des sous-blocks, comme ici dans le body, l'ordre a son importance, et il faut faire attention: si on écrase body dans un enfant, on écrase également tous les block enfant (menuhaut, container, footer) #}
+{% block body %}
+    {% block menuhaut %}menu{% endblock%}
+    {% block container %}contenu{% endblock %}
+    {% block footer %}footer{% endblock %}
+{% endblock %}
+{% block javascripts %}
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+{% endblock %}
+
+{# Création du titre de base, on le gardera en utilisant {{ parent()  }} dans ses enfants
+
+    L'ordre des blocks n'est plus important lors de leurs réutilisation (si ils viennent d'un parent), que ce soit pour l'effacement ou le remplissage
+
+#}
+{% block title %}PHP-OO | {% endblock %}

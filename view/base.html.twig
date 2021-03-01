@@ -1,12 +1,17 @@
+{# structure de base de notre site, déclaration de nos 4 blocks principaux (mais vous pouvez en créer autant que vous le souhaitez!),
+SEUL l'HTML de ce fichier peut se trouver en dehors de block !
+
+L'ordre des blocks est important lors de leurs créations!
+#}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}Hello World!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
-<body>
+<body id="page-top">
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>

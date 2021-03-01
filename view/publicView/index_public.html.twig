@@ -1,6 +1,3 @@
 {% extends "template_bootstrap.html.twig" %}
 
-{% block title %}Accueil de note site{% endblock %}
-{% block body %}
-    <pre>{{ dump(menu) }}</pre>
-{% endblock %}
+{% block title %}{{ parent() }}Accueil de note site{% endblock %}
