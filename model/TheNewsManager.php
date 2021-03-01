@@ -8,6 +8,16 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
 
     public function getAll(): array
     {
-        // TODO: Implement getAll() method.
+        $sql="SELECT * FROM TheNews ORDER BY theNewsDate DESC";
+        $recup = $this->db->query($sql);
+        if(!$recup->rowCount()){
+            return [];
+        }
+        $array = $recup->fetchAll(PDO::FETCH_ASSOC);
+        // instanciations des résultats en objets de type TheSection
+        foreach ($array as $item){
+            $news[]= new TheNews($item);
+        }
+        return $news;
     }
 }

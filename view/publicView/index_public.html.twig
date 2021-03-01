@@ -4,4 +4,14 @@
 
 {% block title %}{{ parent() }}Accueil de note site{% endblock %}
 
+{% block contenu %}
+{{ dump(news) }}
+    {% for item in news %}
+        <h3>{{ item.theNewsTitle }}</h3>
+        <h1>On est ici!</h1>
+    {% else %}
+        <h3>Pas encore de news sur ce site</h3>
+    {% endfor %}
+{% endblock %}
+
 {% block h1 %}Accueil du site PHP OO{% endblock %}
