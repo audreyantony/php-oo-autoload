@@ -3,7 +3,13 @@ Si on ne réécrit pas le nom d'un block existant dans un parent, il existe par 
 #}
 {% extends "base.html.twig" %}
 
+{#
+// texte interdit en dehors d'un block
+<p>jhgjhg</p>
 
+// création de block interdite en dehors d'un block existant dans le parent (positionnement, où le mettre?)
+{% bloc lulu %}coucou{% endblock %}
+#}
 {# Appel des feuilles de style et inconne #}
 {% block stylesheets %}
 <link rel="stylesheet" href="css/bootstrap.css" media="screen">
@@ -13,7 +19,11 @@ Si on ne réécrit pas le nom d'un block existant dans un parent, il existe par 
 
 {# si on crée des sous-blocks, comme ici dans le body, l'ordre a son importance, et il faut faire attention: si on écrase body dans un enfant, on écrase également tous les block enfant (menuhaut, container, footer) #}
 {% block body %}
-    {% block menuhaut %}menu{% endblock%}
+
+    {# On peut créer des blocks enfants dans un block existant dans le parent #}
+    {% block menuhaut %}
+{% include "publicView/_menu_haut_public.html.twig" %}
+    {% endblock%}
     {% block container %}contenu{% endblock %}
     {% block footer %}footer{% endblock %}
 {% endblock %}
