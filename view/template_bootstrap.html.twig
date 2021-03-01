@@ -22,10 +22,32 @@ Si on ne réécrit pas le nom d'un block existant dans un parent, il existe par 
 
     {# On peut créer des blocks enfants dans un block existant dans le parent #}
     {% block menuhaut %}
-{% include "publicView/_menu_haut_public.html.twig" %}
+        {# Inclusion d'un fichier externe #}
+        {% include "publicView/_menu_haut_public.html.twig" %}
     {% endblock%}
-    {% block container %}contenu{% endblock %}
-    {% block footer %}footer{% endblock %}
+
+<div class="container">
+
+    {% block container %}
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+
+                <h1>{% block h1 %}Titre par défaut{% endblock %}</h1>
+                <p class="lead">{% block lead %}Nombre d'articles: {% endblock %}</p>
+                <hr>
+                {% block contenu %}Contenu par défaut{% endblock %}
+                <hr>
+                <a href="#page-top">Retour en haut</a>
+                <hr>
+            </div>
+
+        </div>
+    {% endblock %}
+
+    {% block footer %}footer par défaut{% endblock %}
+
+</div>
 {% endblock %}
 {% block javascripts %}
     <script src="js/jquery.min.js"></script>
