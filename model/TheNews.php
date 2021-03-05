@@ -11,6 +11,12 @@ class TheNews extends MappingTableAbstract
     protected string $theNewsDate;
     protected int $theUserIdtheUser;
 
+    // from TheUser
+    protected string $theUserLogin;
+
+    // from TheSection
+    protected ?int $idtheSection;
+    protected ?string $theSectionName;
 
     # Constructor
     public function __construct(array $tab)
@@ -68,6 +74,32 @@ class TheNews extends MappingTableAbstract
         return $this->theUserIdtheUser;
     }
 
+    /**
+     * Getter from TheUser
+     * @return string
+     */
+    public function getTheUserLogin(): string
+    {
+        return $this->theUserLogin;
+    }
+    /**
+     * Getter from TheSection
+     *
+     */
+    public function getIdtheSection(): ?int
+    {
+        return $this->idtheSection;
+    }
+
+    /**
+     * Getter from TheSection
+     *
+     */
+    public function getTheSectionName(): ?string
+    {
+        return $this->theSectionName;
+    }
+
     # SETTERS
 
     /**
@@ -103,6 +135,28 @@ class TheNews extends MappingTableAbstract
                 $this->setTheNewsSlug($this->slugify($theNewsTitle));
             }
         }
+    }
+
+    /**
+     * from TheSection
+     * @param int $idtheSection
+     */
+    public function setIdtheSection(?int $idtheSection): void
+    {
+
+            $this->idtheSection = $idtheSection;
+
+    }
+
+    /**
+     * from TheSection
+     * @param string $theSectionName
+     */
+    public function setTheSectionName(?string $theSectionName): void
+    {
+        $theSectionName = strip_tags(trim($theSectionName));
+
+            $this->theSectionName = $theSectionName;
     }
 
     /**
@@ -157,6 +211,36 @@ class TheNews extends MappingTableAbstract
         else{
             $this->theUserIdtheUser = $theUserIdtheUser;
         }
+    }
+
+    /**
+     * from TheUser
+     * @param string $theUserLogin
+     */
+    public function setTheUserLogin(string $theUserLogin): void
+    {
+        $theUserLogin = strip_tags(trim($theUserLogin));
+        if(empty($theUserLogin)){
+            trigger_error("Le login ne peut être vide",E_USER_NOTICE);
+        }
+        elseif(strlen($theUserLogin)>80){
+            trigger_error("Le login ne peut dépasser 80 caractères",E_USER_NOTICE);
+        }
+        else{
+            $this->theUserLogin = $theUserLogin;
+        }
+    }
+
+    # methode cuteTheText
+    public static function cuteTheText(string $text, int $nb){
+        // on coupe à la longueur maximale voulue
+        $cuteText = substr($text,0,$nb);
+        // on trouve le dernier espace dans ce texte
+        $positionLastSpace = strrpos($cuteText, " ");
+        // on coupe la chaine avec ce dernier caractère
+        $final = substr($cuteText, 0,$positionLastSpace);
+        return $final;
+
     }
 
     # method slug
