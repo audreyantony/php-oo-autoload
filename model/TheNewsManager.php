@@ -25,7 +25,7 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
     {
         $sql="SELECT n.theNewsTitle, n.theNewsSlug, LEFT(n.theNewsText,180) AS theNewsText, n.theNewsDate, n.theUserIdtheUser,
                     u.theUserLogin,
-                    s.theSectionName, s.idtheSection
+                    GROUP_CONCAT(s.theSectionName SEPARATOR '|||') as theSectionName, GROUP_CONCAT(s.idtheSection) as idtheSection
                 FROM TheNews n 
                     INNER JOIN TheUser u
                         ON u.idtheUser = n.theUserIdtheUser
@@ -33,7 +33,9 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
                         ON h.theNews_idtheNews = n.idtheNews
                     LEFT JOIN thesection s 
                         ON s.idtheSection = h.theSection_idtheSection
-                ORDER BY n.theNewsDate DESC";
+                GROUP BY n.idtheNews
+                ORDER BY n.theNewsDate DESC
+                ";
 
         $recup = $this->db->query($sql);
         if(!$recup->rowCount()){
@@ -42,7 +44,11 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
         $array = $recup->fetchAll(PDO::FETCH_ASSOC);
         // instanciations des résultats en objets de type TheSection
         foreach ($array as $item){
-            $news[]= new TheNews($item);
+            // instanciation avec les valeurs SQL
+             $instanceNews =new TheNews($item);
+             // on coupe le texte récupéré grâce à son getter "$instanceNews->getTheNewsText()" en utilisant le méthode statique "TheNews::cuteTheText($instanceNews->getTheNewsText(),160)" donc à 160 caractères, puis je réattribue le tout avec "$instanceNews->setTheNewsText(...)"
+             $instanceNews->setTheNewsText(TheNews::cuteTheText($instanceNews->getTheNewsText(),160));
+             $news[]=$instanceNews;
         }
         return $news;
     }

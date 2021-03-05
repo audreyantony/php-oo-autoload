@@ -15,7 +15,7 @@ class TheNews extends MappingTableAbstract
     protected string $theUserLogin;
 
     // from TheSection
-    protected ?int $idtheSection;
+    protected ?string $idtheSection;
     protected ?string $theSectionName;
 
     # Constructor
@@ -86,7 +86,7 @@ class TheNews extends MappingTableAbstract
      * Getter from TheSection
      *
      */
-    public function getIdtheSection(): ?int
+    public function getIdtheSection(): ?string
     {
         return $this->idtheSection;
     }
@@ -141,7 +141,7 @@ class TheNews extends MappingTableAbstract
      * from TheSection
      * @param int $idtheSection
      */
-    public function setIdtheSection(?int $idtheSection): void
+    public function setIdtheSection(?string $idtheSection): void
     {
 
             $this->idtheSection = $idtheSection;
