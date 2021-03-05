@@ -29,6 +29,7 @@ require_once '../vendor/autoload.php';
 
 /*
  * Génération de l'espace de travail pour Twig (après l'autoload de composer)
+ * https://twig.symfony.com/doc/3.x/
  */
 $loader = new \Twig\Loader\FilesystemLoader('../view'); // lieux où se trouveront nos vues
 // création de l'environnement, nous n'activerons le cache que lorsque le travail sera terminé
