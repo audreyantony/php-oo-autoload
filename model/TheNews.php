@@ -244,7 +244,7 @@ class TheNews extends MappingTableAbstract
     }
 
     # method slug
-    protected function slugify($text)
+    public static function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
