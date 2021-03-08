@@ -14,9 +14,7 @@ class TheUser extends MappingTableAbstract
         $this->hydrate($tab);
     }
 
-    public function hydrate2(){
 
-    }
 
     # GETTERS
 
@@ -67,10 +65,9 @@ class TheUser extends MappingTableAbstract
      */
     public function setIdtheUser(int $idtheUser): void
     {
-        if(empty($idtheUser)){
-            trigger_error("L'id de l'utilisateur ne peut être 0",E_USER_NOTICE);
-        }
-        else{
+        if (empty($idtheUser)) {
+            trigger_error("L'id de l'utilisateur ne peut être 0", E_USER_NOTICE);
+        } else {
             $this->idtheUser = $idtheUser;
         }
     }
@@ -81,13 +78,11 @@ class TheUser extends MappingTableAbstract
     public function setTheUserLogin(string $theUserLogin): void
     {
         $theUserLogin = strip_tags(trim($theUserLogin));
-        if(empty($theUserLogin)){
-            trigger_error("Le login ne peut être vide",E_USER_NOTICE);
-        }
-        elseif(strlen($theUserLogin)>80){
-            trigger_error("Le login ne peut dépasser 80 caractères",E_USER_NOTICE);
-        }
-        else{
+        if (empty($theUserLogin)) {
+            trigger_error("Le login ne peut être vide", E_USER_NOTICE);
+        } elseif (strlen($theUserLogin) > 80) {
+            trigger_error("Le login ne peut dépasser 80 caractères", E_USER_NOTICE);
+        } else {
             $this->theUserLogin = $theUserLogin;
         }
     }
@@ -98,13 +93,11 @@ class TheUser extends MappingTableAbstract
     public function setTheUserPwd(string $theUserPwd): void
     {
         $theUserPwd = strip_tags(trim($theUserPwd));
-        if(empty($theUserPwd)){
-            trigger_error("Le mot de passe ne peut être vide",E_USER_NOTICE);
-        }
-        elseif(strlen($theUserPwd)>255){
-            trigger_error("Le mot de passe ne peut dépasser 255",E_USER_NOTICE);
-        }
-        else{
+        if (empty($theUserPwd)) {
+            trigger_error("Le mot de passe ne peut être vide", E_USER_NOTICE);
+        } elseif (strlen($theUserPwd) > 255) {
+            trigger_error("Le mot de passe ne peut dépasser 255", E_USER_NOTICE);
+        } else {
             $this->theUserPwd = $theUserPwd;
         }
     }
@@ -114,11 +107,10 @@ class TheUser extends MappingTableAbstract
      */
     public function setTheUserMail(string $theUserMail): void
     {
-        $theUserMail = filter_var($theUserMail,FILTER_VALIDATE_EMAIL);
-        if($theUserMail===false){
-            trigger_error("Une adresse mail valide est requise",E_USER_NOTICE);
-        }
-        else{
+        $theUserMail = filter_var($theUserMail, FILTER_VALIDATE_EMAIL);
+        if ($theUserMail === false) {
+            trigger_error("Une adresse mail valide est requise", E_USER_NOTICE);
+        } else {
             $this->theUserMail = $theUserMail;
         }
     }
@@ -128,15 +120,12 @@ class TheUser extends MappingTableAbstract
      */
     public function setTheRoleIdtheRole(int $theRoleIdtheRole): void
     {
-        if(empty($theRoleIdtheRole)){
-            trigger_error("Ce champ ne peut être vide",E_USER_NOTICE);
-        }
-        else{
+        if (empty($theRoleIdtheRole)) {
+            trigger_error("Ce champ ne peut être vide", E_USER_NOTICE);
+        } else {
             $this->theRoleIdtheRole = $theRoleIdtheRole;
         }
     }
-
-
 
 
 }

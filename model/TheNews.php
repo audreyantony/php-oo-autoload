@@ -60,6 +60,14 @@ class TheNews extends MappingTableAbstract
         return $this->theNewsDate;
     }
 
+    /**
+     * @return int
+     */
+    public function getTheUserIdtheUser(): int
+    {
+        return $this->theUserIdtheUser;
+    }
+
 
 
 
@@ -106,8 +114,6 @@ class TheNews extends MappingTableAbstract
 
 
 
-
-
     /**
      * @param string $theNewsSlug
      */
@@ -149,8 +155,18 @@ class TheNews extends MappingTableAbstract
         }
     }
 
-
-
+    /**
+     * @param int $theUserIdtheUser
+     */
+    public function setTheUserIdtheUser(int $theUserIdtheUser): void
+    {
+        if(empty($theUserIdtheUser)){
+            trigger_error("L'id de l'utilisateur ne peut pas être 0!",E_USER_NOTICE);
+        }
+        else{
+            $this->theUserIdtheUser = $theUserIdtheUser;
+        }
+    }
 
 
 
