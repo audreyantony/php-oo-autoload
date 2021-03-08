@@ -4,6 +4,9 @@
 
 {% block title %}{{ parent() }}Article: {% if news[0] %} {{ news[0] }} {% else %} {{ news[1].theNewsTitle }}{% endif%} {% endblock %}
 
+{# on efface le lead #}
+{% block lead %}{% endblock %}
+
 {% block contenu %}
 
     {% if news[0] %}

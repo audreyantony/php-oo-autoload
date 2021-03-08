@@ -4,6 +4,8 @@
 
 {% block title %}{{ parent() }}Accueil de note site{% endblock %}
 
+{% block lead %}{{ parent() }} {{ news|length }}{% endblock %}
+
 {% block contenu %}
 
     {% for item in news %}
