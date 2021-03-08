@@ -3,7 +3,7 @@
 define("DB_TYPE","mysql");
 define("DB_HOST","localhost");
 define("DB_NAME","phpooautoload");
-define("DB_PORT",3307);
+define("DB_PORT",3308);// change port for MariaDB 3307 to 3308
 define("DB_CHARSET","utf8");
 define("DB_LOGIN","root");
 define("DB_PWD","");

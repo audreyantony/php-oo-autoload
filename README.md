@@ -2,7 +2,7 @@
 PHP en OO avec un autoload manuel et installation de Twig via composer
 
 ## Database
-Importez en MariaDB en désactivant les clefs étrangères
+Importez en MariaDB en désactivant les clefs étrangères (port 3308)
 
         datas/import.sql
 
