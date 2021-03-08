@@ -47,7 +47,7 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
             // instanciation avec les valeurs SQL
              $instanceNews =new TheNews($item);
              // on coupe le texte récupéré grâce à son getter "$instanceNews->getTheNewsText()" en utilisant le méthode statique "TheNews::cuteTheText($instanceNews->getTheNewsText(),160)" donc à 160 caractères, puis je réattribue le tout avec "$instanceNews->setTheNewsText(...)"
-             $instanceNews->setTheNewsText(TheNews::cuteTheText($instanceNews->getTheNewsText(),160));
+             $instanceNews->setTheNewsText(TheNewsManager::cuteTheText($instanceNews->getTheNewsText(),160));
              $news[]=$instanceNews;
         }
         return $news;

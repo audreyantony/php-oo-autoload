@@ -11,12 +11,6 @@ class TheNews extends MappingTableAbstract
     protected string $theNewsDate;
     protected int $theUserIdtheUser;
 
-    // from TheUser
-    protected string $theUserLogin;
-
-    // from TheSection
-    protected ?string $idtheSection;
-    protected ?string $theSectionName;
 
     # Constructor
     public function __construct(array $tab)
@@ -66,39 +60,12 @@ class TheNews extends MappingTableAbstract
         return $this->theNewsDate;
     }
 
-    /**
-     * @return int
-     */
-    public function getTheUserIdtheUser(): int
-    {
-        return $this->theUserIdtheUser;
-    }
 
-    /**
-     * Getter from TheUser
-     * @return string
-     */
-    public function getTheUserLogin(): string
-    {
-        return $this->theUserLogin;
-    }
-    /**
-     * Getter from TheSection
-     *
-     */
-    public function getIdtheSection(): ?string
-    {
-        return $this->idtheSection;
-    }
 
-    /**
-     * Getter from TheSection
-     *
-     */
-    public function getTheSectionName(): ?string
-    {
-        return $this->theSectionName;
-    }
+
+
+
+
 
     # SETTERS
 
@@ -132,32 +99,14 @@ class TheNews extends MappingTableAbstract
             // if the slug's param is not exist (undefined == NOT isset !!! not NULL)
             if(!isset($this->theNewsSlug)) {
 
-                $this->setTheNewsSlug($this->slugify($theNewsTitle));
+                $this->setTheNewsSlug(TheNewsManager::slugify($theNewsTitle));
             }
         }
     }
 
-    /**
-     * from TheSection
-     * @param int $idtheSection
-     */
-    public function setIdtheSection(?string $idtheSection): void
-    {
 
-            $this->idtheSection = $idtheSection;
 
-    }
 
-    /**
-     * from TheSection
-     * @param string $theSectionName
-     */
-    public function setTheSectionName(?string $theSectionName): void
-    {
-        $theSectionName = strip_tags(trim($theSectionName));
-
-            $this->theSectionName = $theSectionName;
-    }
 
     /**
      * @param string $theNewsSlug
@@ -200,36 +149,9 @@ class TheNews extends MappingTableAbstract
         }
     }
 
-    /**
-     * @param int $theUserIdtheUser
-     */
-    public function setTheUserIdtheUser(int $theUserIdtheUser): void
-    {
-        if(empty($theUserIdtheUser)){
-            trigger_error("L'id de l'utilisateur ne peut pas être 0!",E_USER_NOTICE);
-        }
-        else{
-            $this->theUserIdtheUser = $theUserIdtheUser;
-        }
-    }
 
-    /**
-     * from TheUser
-     * @param string $theUserLogin
-     */
-    public function setTheUserLogin(string $theUserLogin): void
-    {
-        $theUserLogin = strip_tags(trim($theUserLogin));
-        if(empty($theUserLogin)){
-            trigger_error("Le login ne peut être vide",E_USER_NOTICE);
-        }
-        elseif(strlen($theUserLogin)>80){
-            trigger_error("Le login ne peut dépasser 80 caractères",E_USER_NOTICE);
-        }
-        else{
-            $this->theUserLogin = $theUserLogin;
-        }
-    }
+
+
 
 
 
