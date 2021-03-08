@@ -98,7 +98,7 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
                 $instanceNews->idtheSection = $oneNews['idtheSection']; // idtheSection
                 $instanceNews->theSectionName = $oneNews['theSectionName']; // theSectionName
 
-            return $instanceNews;
+            return [1=>$instanceNews];
 
         // erreur
         }catch(PDOException $e){

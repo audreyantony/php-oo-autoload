@@ -1,0 +1,28 @@
+{% extends "template_bootstrap.html.twig" %}
+
+{% block footer %}le footer{% endblock %}
+
+{% block title %}{{ parent() }}Article: {% if news[0] %} {{ news[0] }} {% else %} {{ news[1].theNewsTitle }}{% endif%} {% endblock %}
+
+{% block contenu %}
+
+    {% if news[0] %}
+        <h2>{{ news[0] }}</h2>
+    {% else %}
+        <h3>{{ news[1].theNewsTitle }}</h3>
+        {# Création d'une variable avec set, la fonction split (explode) va couper et transformer en tableau les id des sections #}
+        {% set idsection = news[1].idtheSection|split(',') %}
+        {% set sectionName = news[1].theSectionName|split('|||') %}
+
+<h4>{% for section in idsection %}
+        <a href="?section={{ section }}">{{ sectionName[loop.index0] }}</a> {% if not loop.last %}|{% endif %}
+    {% endfor %}</h4>
+
+        <p>{{ news[1].theNewsText|nl2br }}</p>
+        <h5>Ecrit par {{ news[1].theUserLogin }} le {{ news[1].theNewsDate|date("d/m/Y") }}</h5>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block h1 %}NEWS: {% if news[0] %} {{ news[0] }} {% else %} {{ news[1].theNewsTitle }}{% endif%}{% endblock %}
