@@ -231,45 +231,6 @@ class TheNews extends MappingTableAbstract
         }
     }
 
-    # methode cuteTheText
-    public static function cuteTheText(string $text, int $nb){
-        // on coupe à la longueur maximale voulue
-        $cuteText = substr($text,0,$nb);
-        // on trouve le dernier espace dans ce texte
-        $positionLastSpace = strrpos($cuteText, " ");
-        // on coupe la chaine avec ce dernier caractère
-        $final = substr($cuteText, 0,$positionLastSpace);
-        return $final;
-
-    }
-
-    # method slug
-    public static function slugify($text)
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        // trim
-        $text = trim($text, '-');
-
-        // remove duplicate -
-        $text = preg_replace('~-+~', '-', $text);
-
-        // lowercase
-        $text = strtolower($text);
-
-        if (empty($text)) {
-            return 'n-a';
-        }
-
-        return $text;
-    }
 
 
 }
