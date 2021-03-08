@@ -35,4 +35,10 @@ class TheSectionManager extends ManagerAbstract implements ManagerInterface
         }
         return $sections;
     }
+
+    // récupération de tous les champs d'une section par son id
+    public function getTheSectionById(): array
+    {
+
+    }
 }

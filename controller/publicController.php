@@ -3,6 +3,9 @@
 // récupération des sections pour le menu
 $sectionsForMenu = $TheSectionManager->getAllWithoutTheSectionDesc();
 
+// si on veut voir le détail d'une rubrique et ses articles
+
+
 // si on veut voir le détail d'une news
 if(isset($_GET['page'])){
 

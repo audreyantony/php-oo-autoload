@@ -107,6 +107,11 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
 
     }
 
+    // on récupère tous les articles qui sont dans une section
+    public function getAllNewsInTheSection(int $idsection): array {
+
+    }
+
     # method public static cuteTheText
     public static function cuteTheText(string $text, int $nb)
     {
