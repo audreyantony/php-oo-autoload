@@ -6,6 +6,7 @@
 class TheNewsManager extends ManagerAbstract implements ManagerInterface
 {
 
+    // méthode obligatoire venant de l'interface
     public function getAll(): array
     {
         $sql = "SELECT * FROM TheNews ORDER BY theNewsDate DESC";
@@ -21,6 +22,7 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
         return $news;
     }
 
+    // Affichage des news pour la page d'accueil
     public function getAllHomePage(): array
     {
         $sql = "SELECT n.theNewsTitle, n.theNewsSlug, LEFT(n.theNewsText,180) AS theNewsText, n.theNewsDate, n.theUserIdtheUser,
@@ -42,7 +44,7 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
             return [];
         }
         $array = $recup->fetchAll(PDO::FETCH_ASSOC);
-        // instanciations des résultats en objets de type TheSection
+        // instanciations des résultats en objets de type TheNews
         foreach ($array as $item) {
             // instanciation avec les valeurs SQL (seulement les setters existants dans TheNews!)
             $instanceNews = new TheNews($item);
@@ -57,6 +59,52 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
             $news[] = $instanceNews;
         }
         return $news;
+    }
+
+    // Détail d'un News chargée par un slug
+    public function getDetailNews(string $slug): array
+    {
+        $sql = "SELECT n.theNewsTitle, n.theNewsSlug, n.theNewsText, n.theNewsDate, n.theUserIdtheUser,
+                    u.theUserLogin,
+                    GROUP_CONCAT(s.theSectionName SEPARATOR '|||') as theSectionName, GROUP_CONCAT(s.idtheSection) as idtheSection
+                FROM TheNews n 
+                    INNER JOIN TheUser u
+                        ON u.idtheUser = n.theUserIdtheUser
+                    LEFT JOIN theNews_has_theSection h
+                        ON h.theNews_idtheNews = n.idtheNews
+                    LEFT JOIN thesection s 
+                        ON s.idtheSection = h.theSection_idtheSection
+                WHERE n.theNewsSlug = ?
+                GROUP BY n.idtheNews
+                ";
+        // requête préparée
+        $prepare = $this->db->prepare($sql);
+        // essai
+        try{
+            // exécution de la requête
+            $prepare->execute([$slug]);
+
+            // si pas de résultats
+            if(!$prepare->rowCount()) return [0=>"Cet article n'existe plus"];
+
+            $oneNews = $prepare->fetch(PDO::FETCH_ASSOC);
+            // instanciations des résultats en objets de type TheNews
+
+                // instanciation avec les valeurs SQL (seulement les setters existants dans TheNews!)
+                $instanceNews = new TheNews($oneNews);
+
+                // utilisation du __set (MappingTableAbstract.php) pour ajouter les champs manquants venant d'autres tables (! parfait pour de l'affichage, on utilise pas ces champs pour un insert update ou delete, car il contourne l'encapsulation et la protection des setters) - les éléments dans item viennent de la requête SQL
+                $instanceNews->theUserLogin = $oneNews['theUserLogin']; // theUserLogin
+                $instanceNews->idtheSection = $oneNews['idtheSection']; // idtheSection
+                $instanceNews->theSectionName = $oneNews['theSectionName']; // theSectionName
+
+            return $instanceNews;
+
+        // erreur
+        }catch(PDOException $e){
+            return [0=>$e->getMessage()];
+        }
+
     }
 
     # method public static cuteTheText
