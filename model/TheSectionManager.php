@@ -20,6 +20,21 @@ class TheSectionManager extends ManagerAbstract implements ManagerInterface
         return $sections;
     }
 
+    // récupérer le nom et desc d'une section en particulier
+    public function getSectionName($id){
+        $sql="SELECT theSectionName FROM TheSection WHERE idtheSection = ".$id.";";
+        $recup = $this->db->query($sql);
+        if(!$recup->rowCount()){
+            return [];
+        }
+        $array = $recup->fetchAll(PDO::FETCH_ASSOC);
+        // instanciations des résultats en objets de type TheSection
+        foreach ($array as $item){
+            $someSections[]= new TheSection($item);
+        }
+        return $someSections;
+    }
+
     // récupération du titre et de l'id de toutes les sections (menu + choix dans formulaires) en classant par nom de section ascendant
     public function getAllWithoutTheSectionDesc(): array
     {

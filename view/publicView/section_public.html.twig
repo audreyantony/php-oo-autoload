@@ -1,0 +1,24 @@
+{% extends "template_bootstrap.html.twig" %}
+
+{% block footer %}le footer{% endblock %}
+
+{% block title %}{{ section[0].theSectionName }}{% endblock %}
+
+{% block lead %}{{ parent() }} {{ news|length }}{% endblock %}
+
+{% block contenu %}
+
+
+    {% for item in news %}
+
+        <h3>{{ item.theNewsTitle }}</h3>
+        <p>{{ item.theNewsText }} ... <a href="?page={{ item.theNewsSlug }}">Lire la suite</a></p>
+        <h5>Ecrit par {{ item.theUserLogin }} le {{ item.theNewsDate|date("d/m/Y") }}</h5>
+
+    {% else %}
+        <h3>Pas encore de news pour cette section</h3>
+    {% endfor %}
+
+{% endblock %}
+
+{% block h1 %}{{ section[0].theSectionName }}{% endblock %}

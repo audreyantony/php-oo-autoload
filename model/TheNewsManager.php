@@ -22,6 +22,28 @@ class TheNewsManager extends ManagerAbstract implements ManagerInterface
         return $news;
     }
 
+    // Afiiche les news d'une section en particulier :
+    public function getSectionNews($id){
+        $sql = "SELECT idtheNews, theNewsTitle, theNewsSlug, theNewsText, theNewsDate, theUserIdtheUser
+                FROM TheNews 
+                JOIN theNews_has_theSection 
+                ON idtheNews = theNews_idtheNews 
+                JOIN theSection 
+                ON theSection_idtheSection = idtheSection 
+                WHERE idtheSection = ".$id."
+                ORDER BY theNewsDate DESC";
+        $recup = $this->db->query($sql);
+        if (!$recup->rowCount()) {
+            return [];
+        }
+        $array = $recup->fetchAll(PDO::FETCH_ASSOC);
+        // instanciations des résultats en objets de type TheSection
+        foreach ($array as $item) {
+            $newsBySection[] = new TheNews($item);
+        }
+        return $newsBySection;
+    }
+
     // Affichage des news pour la page d'accueil
     public function getAllHomePage(): array
     {
